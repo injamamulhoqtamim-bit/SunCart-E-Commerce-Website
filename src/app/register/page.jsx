@@ -15,7 +15,6 @@ export default function Register() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  // ✅ Register with Email/Password (LocalStorage)
   const handleRegister = () => {
     setError("");
 
@@ -24,16 +23,22 @@ export default function Register() {
       return;
     }
 
-    const userData = { name, email, photo, password };
+    // ✅ FIX: photo validation + fallback
+    const userData = {
+      name,
+      email,
+      photo:
+        photo && photo.startsWith("http")
+          ? photo
+          : "https://i.ibb.co/4pDNDk1/avatar.png",
+      password,
+    };
 
-    // save user
     localStorage.setItem("userData", JSON.stringify(userData));
 
-    // success → login page
     router.push("/login");
   };
 
-  // 🔥 Google Register/Login
   const handleGoogleRegister = async () => {
     try {
       const result = await signInWithPopup(auth, provider);
@@ -69,49 +74,40 @@ export default function Register() {
           Register
         </h2>
 
-        {/* Name */}
         <input
           placeholder="Name"
           onChange={(e) => setName(e.target.value)}
-          className="w-full mb-2 p-2 border border-white/30 bg-transparent rounded text-white placeholder-gray-300 outline-none"
+          className="w-full mb-2 p-2 border border-white/30 bg-transparent rounded text-white placeholder-gray-300"
         />
 
-        {/* Email */}
         <input
           placeholder="Email"
           onChange={(e) => setEmail(e.target.value)}
-          className="w-full mb-2 p-2 border border-white/30 bg-transparent rounded text-white placeholder-gray-300 outline-none"
+          className="w-full mb-2 p-2 border border-white/30 bg-transparent rounded text-white placeholder-gray-300"
         />
 
-        {/* Photo */}
         <input
           placeholder="Photo URL"
           onChange={(e) => setPhoto(e.target.value)}
-          className="w-full mb-2 p-2 border border-white/30 bg-transparent rounded text-white placeholder-gray-300 outline-none"
+          className="w-full mb-2 p-2 border border-white/30 bg-transparent rounded text-white placeholder-gray-300"
         />
 
-        {/* Password */}
         <input
           type="password"
           placeholder="Password"
           onChange={(e) => setPassword(e.target.value)}
-          className="w-full mb-2 p-2 border border-white/30 bg-transparent rounded text-white placeholder-gray-300 outline-none"
+          className="w-full mb-2 p-2 border border-white/30 bg-transparent rounded text-white placeholder-gray-300"
         />
 
-        {/* Error */}
-        {error && (
-          <p className="text-red-400 text-sm mb-2">{error}</p>
-        )}
+        {error && <p className="text-red-400 text-sm mb-2">{error}</p>}
 
-        {/* ✅ FIXED BUTTON */}
         <button
           onClick={handleRegister}
-          className="w-full bg-orange-500 text-white p-2 rounded hover:bg-orange-600 transition"
+          className="w-full bg-orange-500 p-2 rounded hover:bg-orange-600"
         >
           Register
         </button>
 
-        {/* Login Link */}
         <p className="mt-3 text-sm text-center">
           Already have an account?{" "}
           <Link href="/login" className="text-blue-400">
@@ -119,10 +115,9 @@ export default function Register() {
           </Link>
         </p>
 
-        {/* Google Button */}
         <button
           onClick={handleGoogleRegister}
-          className="mt-3 w-full border border-white/30 p-2 rounded hover:bg-white/10 transition"
+          className="mt-3 w-full border border-white/30 p-2 rounded hover:bg-white/10"
         >
           Continue with Google
         </button>
