@@ -1,0 +1,68 @@
+[
+  {
+    "id": 1,
+    "name": "UV Protection Sunglasses",
+    "brand": "SunShade",
+    "price": 15,
+    "rating": 4.7,
+    "stock": 10,
+    "description": "Stylish UV protection sunglasses perfect for summer outings.",
+    "image": "https://images.unsplash.com/photo-1511499767150-a48a237f0083",
+    "category": "Accessories"
+  },
+  {
+    "id": 2,
+    "name": "Summer T-Shirt",
+    "brand": "CoolWear",
+    "price": 25,
+    "rating": 4.2,
+    "stock": 8,
+    "description": "Comfortable cotton t-shirt for hot weather.",
+    "image": "https://images.unsplash.com/photo-1523381210434-271e8be1f52b",
+    "category": "Clothing"
+  },
+  {
+    "id": 3,
+    "name": "Beach Hat",
+    "brand": "SunnyStyle",
+    "price": 15,
+    "rating": 4.3,
+    "stock": 12,
+    "description": "Perfect hat for beach and sun protection.",
+    "image": "https://images.unsplash.com/photo-1503341504253-dff4815485f1",
+    "category": "Accessories"
+  },
+  {
+    "id": 4,
+    "name": "Flip Flops",
+    "brand": "WalkEasy",
+    "price": 12,
+    "rating": 4.1,
+    "stock": 20,
+    "description": "Lightweight and comfortable flip flops.",
+    "image": "https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb",
+    "category": "Footwear"
+  },
+  {
+    "id": 5,
+    "name": "Beach Shorts",
+    "brand": "WaveWear",
+    "price": 18,
+    "rating": 4.4,
+    "stock": 15,
+    "description": "Comfortable beach shorts for summer vibes.",
+    "image": "https://images.unsplash.com/photo-1593032465175-481ac7f401a0",
+    "category": "Clothing"
+  },
+  {
+    "id": 6,
+    "name": "Water Bottle",
+    "brand": "HydroCool",
+    "price": 10,
+    "rating": 4.6,
+    "stock": 25,
+    "description": "Keep your water cool all day.",
+    "image": "https://images.unsplash.com/photo-1526406915894-7bcd65f60845",
+    "category": "Accessories"
+  }
+]
