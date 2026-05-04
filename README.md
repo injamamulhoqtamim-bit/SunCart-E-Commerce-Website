@@ -2,18 +2,18 @@
 
 ## 🌐 Live URL
 
-👉 [https://your-project-name.vercel.app](https://sun-cart-e-commerce-website.vercel.app/)
+👉https://sun-cart-e-commerce-website.vercel.app/
 
 ---
 
 ## 📌 Project Purpose
 
-SunCart একটি simple e-commerce web application যেখানে users:
+SunCart is a simple e-commerce web application where users can:
 
-* products দেখতে পারে
-* login/register করতে পারে
-* নিজের profile manage করতে পারে
-* protected product details page access করতে পারে
+* Browse products
+* Register and log in
+* View and update their profile
+* Access protected product details pages
 
 ---
 
@@ -21,35 +21,35 @@ SunCart একটি simple e-commerce web application যেখানে users:
 
 ### 🔐 Authentication System
 
-* Email & Password login/register
-* Google Login (Firebase Authentication)
-* Protected routes (login ছাড়া product details access করা যাবে না)
-* Redirect system (login এর পরে previous page এ ফিরে যাওয়া)
+* Email & Password login and registration
+* Google Login using Firebase Authentication
+* Protected routes (users must log in to view product details)
+* Redirect system (after login, users return to the previous page)
 
 ### 👤 User Profile
 
-* Profile page (name, email, photo)
-* Update profile feature
+* Profile page displaying name, email, and photo
+* Update profile functionality
 * Image fallback support
 
 ### 🛍️ Product System
 
-* Product list (Home page)
+* Product listing on the home page
 * Dynamic product details page (`/product/[id]`)
-* 404 handling (invalid product ID হলে error দেখাবে)
+* 404 error handling for invalid product IDs
 
-### 🎨 UI/UX
+### 🎨 UI/UX Design
 
-* Fully responsive design (mobile, tablet, desktop)
-* Modern e-commerce style UI
-* Sticky Navbar
-* Gradient backgrounds & glassmorphism effect
+* Fully responsive (mobile, tablet, desktop)
+* Modern e-commerce design
+* Sticky Navbar (fixed on scroll)
+* Gradient backgrounds and glassmorphism UI
 
-### 📦 Extra Sections
+### 📦 Additional Sections
 
-* Summer Care Tips
+* Summer Care Tips section
 * Top Brands section
-* Footer with contact info & social links
+* Footer with contact information and social links
 
 ---
 
@@ -59,7 +59,7 @@ SunCart একটি simple e-commerce web application যেখানে users:
 * 🎨 Tailwind CSS
 * 🔥 Firebase Authentication
 * 🧠 React Hooks (useState, useEffect)
-* 🌐 LocalStorage (for simple auth handling)
+* 🌐 LocalStorage (for basic authentication handling)
 
 ---
 
@@ -75,7 +75,7 @@ SunCart একটি simple e-commerce web application যেখানে users:
 Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/suncart.git
+git clone https://github.com/injamamulhoqtamim/suncart.git
 cd suncart
 ```
 
@@ -101,13 +101,13 @@ npm run build
 
 ## 🚀 Deployment
 
-This project is deployed on **Vercel**.
+This project is deployed using **Vercel**.
 
 Steps:
 
-1. Push code to GitHub
-2. Import project in Vercel
-3. Add Firebase config (if needed)
+1. Push  project to GitHub
+2. Import the repository into Vercel
+3. Configure environment variables (Firebase config if needed)
 4. Deploy
 
 ---
@@ -115,15 +115,15 @@ Steps:
 ## ⚠️ Important Notes
 
 * Google Login requires Firebase authorized domain setup
-* LocalStorage is used for demo authentication (not production-ready)
-* Make sure `.env` variables are configured in Vercel
+* LocalStorage is used for demo authentication (not suitable for production)
+* Make sure environment variables are properly configured in Vercel
 
 ---
 
 ## 👨‍💻 Author
 
 **Your Name**
-📧 [your-email@example.com](mailto:your-email@example.com)
+📧 Injamamul Hoq 
 
 ---
 
