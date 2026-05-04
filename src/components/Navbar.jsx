@@ -27,44 +27,59 @@ export default function Navbar() {
   };
 
   return (
-    <div className="fixed top-0 left-0 w-full z-50 bg-blue-400 p-4 text-white flex justify-between items-center shadow-md">
+    <div className="fixed top-0 left-0 w-full z-50 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 p-4 text-white flex justify-between items-center shadow-lg">
       
-      {/* 🔥 Logo → Home */}
+      {/* Logo */}
       <Link href="/">
-        <h1 className="font-bold text-lg cursor-pointer">
+        <h1 className="font-bold text-xl cursor-pointer hover:text-orange-400 transition">
           SunCart
         </h1>
       </Link>
 
-      <div className="flex items-center space-x-4">
-        <Link href="/">Home</Link>
-        <Link href="/product">Products</Link>
-        <Link href="/my-profile">My Profile</Link>
+      <div className="flex items-center space-x-5">
+        
+        <Link href="/" className="hover:text-orange-400 transition">
+          Home
+        </Link>
+
+        <Link href="/product" className="hover:text-orange-400 transition">
+          Products
+        </Link>
+
+        <Link href="/my-profile" className="hover:text-orange-400 transition">
+          My Profile
+        </Link>
 
         {user ? (
           <>
-            <span className="hidden md:block">{user.name}</span>
+            <span className="hidden md:block text-gray-300">
+              {user.name}
+            </span>
 
             <img
-              src={user.photo || "https://i.ibb.co/4pDNDk1/avatar.png"}
+              src={user?.photo || "https://i.ibb.co/4pDNDk1/avatar.png"}
               onError={(e) => {
-                e.target.src =
-                  "https://i.ibb.co/4pDNDk1/avatar.png";
+                e.currentTarget.src = "https://i.ibb.co/4pDNDk1/avatar.png";
               }}
-              className="w-8 h-8 rounded-full border"
+              className="w-9 h-9 rounded-full border-2 border-orange-400"
             />
 
             <button
               onClick={handleLogout}
-              className="bg-black px-3 py-1 rounded"
+              className="bg-orange-500 px-3 py-1 rounded hover:bg-orange-600 transition"
             >
               Logout
             </button>
           </>
         ) : (
           <>
-            <Link href="/login">Login</Link>
-            <Link href="/register">Register</Link>
+            <Link href="/login" className="hover:text-orange-400 transition">
+              Login
+            </Link>
+
+            <Link href="/register" className="bg-orange-500 px-3 py-1 rounded hover:bg-orange-600 transition">
+              Register
+            </Link>
           </>
         )}
       </div>
