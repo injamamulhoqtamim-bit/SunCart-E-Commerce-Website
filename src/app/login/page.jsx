@@ -10,14 +10,12 @@ export default function Login() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  // 🔥 get redirect path (better way)
   const redirect = searchParams.get("redirect") || "/";
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  // 🔐 Email/Password Login
   const handleLogin = () => {
     setError("");
 
@@ -29,18 +27,27 @@ export default function Login() {
     }
 
     if (savedUser.email === email && savedUser.password === password) {
-      localStorage.setItem("user", JSON.stringify(savedUser));
+      
+      // ✅ FIX: clean user object with fallback image
+      const userData = {
+        name: savedUser.name,
+        email: savedUser.email,
+        photo:
+          savedUser.photo && savedUser.photo.startsWith("http")
+            ? savedUser.photo
+            : "https://i.ibb.co/4pDNDk1/avatar.png",
+      };
+
+      localStorage.setItem("user", JSON.stringify(userData));
 
       window.dispatchEvent(new Event("authChange"));
 
-      // ✅ redirect back
       router.push(redirect);
     } else {
       setError("Invalid Email or Password ❌");
     }
   };
 
-  // 🔥 Google Login
   const handleGoogleLogin = async () => {
     try {
       const result = await signInWithPopup(auth, provider);
@@ -60,7 +67,6 @@ export default function Login() {
 
       window.dispatchEvent(new Event("authChange"));
 
-      // ✅ redirect back
       router.push(redirect);
     } catch (err) {
       console.error(err);
@@ -71,12 +77,11 @@ export default function Login() {
   return (
     <div className="flex justify-center items-center h-screen bg-black">
       <div className="p-6 rounded-xl w-80 shadow-xl bg-white/10 backdrop-blur-md border border-white/20 text-white">
-        
+
         <h2 className="text-2xl font-bold mb-4 text-center">
-          Login 
+          Login
         </h2>
 
-        {/* Email */}
         <input
           type="email"
           placeholder="Email"
@@ -84,7 +89,6 @@ export default function Login() {
           className="w-full mb-2 p-2 border border-white/30 bg-transparent rounded text-white placeholder-gray-300 outline-none"
         />
 
-        {/* Password */}
         <input
           type="password"
           placeholder="Password"
@@ -92,20 +96,15 @@ export default function Login() {
           className="w-full mb-2 p-2 border border-white/30 bg-transparent rounded text-white placeholder-gray-300 outline-none"
         />
 
-        {/* Error */}
-        {error && (
-          <p className="text-red-400 text-sm mb-2">{error}</p>
-        )}
+        {error && <p className="text-red-400 text-sm mb-2">{error}</p>}
 
-        {/* Login Button */}
         <button
           onClick={handleLogin}
-          className="w-full bg-orange-500 text-white p-2 rounded hover:bg-orange-600 transition"
+          className="w-full bg-orange-500 p-2 rounded hover:bg-orange-600"
         >
           Login
         </button>
 
-        {/* Register Link */}
         <p className="mt-3 text-sm text-center">
           Don’t have an account?{" "}
           <Link href="/register" className="text-blue-400">
@@ -113,12 +112,11 @@ export default function Login() {
           </Link>
         </p>
 
-        {/* Google Button */}
         <button
           onClick={handleGoogleLogin}
-          className="mt-3 w-full border border-white/30 p-2 rounded hover:bg-white/10 transition"
+          className="mt-3 w-full border border-white/30 p-2 rounded hover:bg-white/10"
         >
-          Continue with Google 
+          Continue with Google
         </button>
       </div>
     </div>
