@@ -1,36 +1,132 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🛒 SunCart - E-commerce Website
 
-## Getting Started
+## 🌐 Live URL
 
-First, run the development server:
+👉 https://your-project-name.vercel.app
+
+---
+
+## 📌 Project Purpose
+
+SunCart একটি simple e-commerce web application যেখানে users:
+
+* products দেখতে পারে
+* login/register করতে পারে
+* নিজের profile manage করতে পারে
+* protected product details page access করতে পারে
+
+---
+
+## 🚀 Key Features
+
+### 🔐 Authentication System
+
+* Email & Password login/register
+* Google Login (Firebase Authentication)
+* Protected routes (login ছাড়া product details access করা যাবে না)
+* Redirect system (login এর পরে previous page এ ফিরে যাওয়া)
+
+### 👤 User Profile
+
+* Profile page (name, email, photo)
+* Update profile feature
+* Image fallback support
+
+### 🛍️ Product System
+
+* Product list (Home page)
+* Dynamic product details page (`/product/[id]`)
+* 404 handling (invalid product ID হলে error দেখাবে)
+
+### 🎨 UI/UX
+
+* Fully responsive design (mobile, tablet, desktop)
+* Modern e-commerce style UI
+* Sticky Navbar
+* Gradient backgrounds & glassmorphism effect
+
+### 📦 Extra Sections
+
+* Summer Care Tips
+* Top Brands section
+* Footer with contact info & social links
+
+---
+
+## 🧰 Technologies Used
+
+* ⚛️ Next.js (App Router)
+* 🎨 Tailwind CSS
+* 🔥 Firebase Authentication
+* 🧠 React Hooks (useState, useEffect)
+* 🌐 LocalStorage (for simple auth handling)
+
+---
+
+## 📦 NPM Packages Used
+
+* firebase
+* animate.css
+
+---
+
+## ⚙️ Installation & Setup
+
+Clone the repository:
+
+```bash
+git clone https://github.com/your-username/suncart.git
+cd suncart
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Build for production:
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+```bash
+npm run build
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🚀 Deployment
 
-To learn more about Next.js, take a look at the following resources:
+This project is deployed on **Vercel**.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Steps:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Push code to GitHub
+2. Import project in Vercel
+3. Add Firebase config (if needed)
+4. Deploy
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## ⚠️ Important Notes
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+* Google Login requires Firebase authorized domain setup
+* LocalStorage is used for demo authentication (not production-ready)
+* Make sure `.env` variables are configured in Vercel
+
+---
+
+## 👨‍💻 Author
+
+**Your Name**
+📧 [your-email@example.com](mailto:your-email@example.com)
+
+---
+
+## 📄 License
+
+This project is for educational purposes only.
