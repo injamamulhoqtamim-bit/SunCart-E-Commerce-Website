@@ -6,7 +6,7 @@
     "price": 15,
     "rating": 4.7,
     "stock": 10,
-    "description": "Stylish UV protection sunglasses perfect for summer outings.",
+    "description": "Stylish UV protection sunglasses",
     "image": "https://images.unsplash.com/photo-1511499767150-a48a237f0083",
     "category": "Accessories"
   },
@@ -17,8 +17,8 @@
     "price": 25,
     "rating": 4.2,
     "stock": 8,
-    "description": "Comfortable cotton t-shirt for hot weather.",
-    "image": "https://images.unsplash.com/photo-1523381210434-271e8be1f52b",
+    "description": "Comfortable cotton t-shirt",
+    "image": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab",
     "category": "Clothing"
   },
   {
@@ -28,8 +28,8 @@
     "price": 15,
     "rating": 4.3,
     "stock": 12,
-    "description": "Perfect hat for beach and sun protection.",
-    "image": "https://images.unsplash.com/photo-1503341504253-dff4815485f1",
+    "description": "Perfect hat for beach",
+    "image": "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c",
     "category": "Accessories"
   },
   {
@@ -39,8 +39,8 @@
     "price": 12,
     "rating": 4.1,
     "stock": 20,
-    "description": "Lightweight and comfortable flip flops.",
-    "image": "https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb",
+    "description": "Lightweight flip flops",
+    "image": "https://images.unsplash.com/photo-1600180758890-6b94519a8ba6",
     "category": "Footwear"
   },
   {
@@ -50,7 +50,7 @@
     "price": 18,
     "rating": 4.4,
     "stock": 15,
-    "description": "Comfortable beach shorts for summer vibes.",
+    "description": "Comfortable beach shorts",
     "image": "https://images.unsplash.com/photo-1593032465175-481ac7f401a0",
     "category": "Clothing"
   },
@@ -61,8 +61,8 @@
     "price": 10,
     "rating": 4.6,
     "stock": 25,
-    "description": "Keep your water cool all day.",
-    "image": "https://images.unsplash.com/photo-1526406915894-7bcd65f60845",
+    "description": "Keep your water cool",
+    "image": "https://images.unsplash.com/photo-1526401485004-46910ecc8e51",
     "category": "Accessories"
   }
 ]
