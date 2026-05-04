@@ -36,9 +36,9 @@ export default function Footer() {
           <h3 className="text-lg font-semibold text-white mb-3">
             Contact
           </h3>
-          <p className="text-sm mb-1">📧 support@suncart.com</p>
-          <p className="text-sm mb-1">📞 +880 1234-567890</p>
-          <p className="text-sm">📍 Dhaka, Bangladesh</p>
+          <p className="text-sm mb-1">support@suncart.com</p>
+          <p className="text-sm mb-1"> +880 1234-567890</p>
+          <p className="text-sm"> Dhaka, Bangladesh</p>
         </div>
 
         {/*  Links */}
