@@ -6,7 +6,7 @@ export default function Home() {
     <div className="px-4 md:px-10 py-6 bg-gray-100 min-h-screen text-gray-900">
 
       {/* 🌅 Hero Section */}
-      <div className="bg-gradient-to-r from-orange-500 to-red-500 text-white p-8 md:p-12 text-center rounded-2xl mb-10 shadow-xl">
+      <div className="bg-gradient-to-r from-blue-500 to-red-500 text-white p-8 md:p-12 text-center rounded-2xl mb-10 shadow-xl">
         <h1 className="text-2xl md:text-4xl font-bold mb-2">
           Summer Sale 50% OFF ☀️
         </h1>
