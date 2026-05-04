@@ -23,7 +23,6 @@ export default function Register() {
       return;
     }
 
-    //  photo validation + fallback
     const userData = {
       name,
       email,
@@ -35,14 +34,12 @@ export default function Register() {
     };
 
     localStorage.setItem("userData", JSON.stringify(userData));
-
     router.push("/login");
   };
 
   const handleGoogleRegister = async () => {
     try {
       const result = await signInWithPopup(auth, provider);
-
       const firebaseUser = result.user;
 
       const userData = {
@@ -56,7 +53,6 @@ export default function Register() {
       };
 
       localStorage.setItem("user", JSON.stringify(userData));
-
       window.dispatchEvent(new Event("authChange"));
 
       router.push("/");
@@ -67,60 +63,79 @@ export default function Register() {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen bg-black">
-      <div className="p-6 rounded-xl w-80 shadow-xl bg-white/10 backdrop-blur-md border border-white/20 text-white">
-
-        <h2 className="text-2xl font-bold mb-4 text-center">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-gray-900 via-black to-gray-900 px-4">
+      
+      <div className="w-full max-w-md p-6 sm:p-8 rounded-2xl shadow-2xl bg-white/10 backdrop-blur-md border border-white/20 text-white">
+        
+        <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-center">
           Register
         </h2>
 
+        {/* Name */}
         <input
           placeholder="Name"
           onChange={(e) => setName(e.target.value)}
-          className="w-full mb-2 p-2 border border-white/30 bg-transparent rounded text-white placeholder-gray-300"
+          className="w-full mb-3 p-3 border border-white/30 bg-transparent rounded-lg text-white placeholder-gray-300 outline-none focus:border-orange-400"
         />
 
+        {/* Email */}
         <input
           placeholder="Email"
           onChange={(e) => setEmail(e.target.value)}
-          className="w-full mb-2 p-2 border border-white/30 bg-transparent rounded text-white placeholder-gray-300"
+          className="w-full mb-3 p-3 border border-white/30 bg-transparent rounded-lg text-white placeholder-gray-300 outline-none focus:border-orange-400"
         />
 
+        {/* Photo */}
         <input
           placeholder="Photo URL"
           onChange={(e) => setPhoto(e.target.value)}
-          className="w-full mb-2 p-2 border border-white/30 bg-transparent rounded text-white placeholder-gray-300"
+          className="w-full mb-3 p-3 border border-white/30 bg-transparent rounded-lg text-white placeholder-gray-300 outline-none focus:border-orange-400"
         />
 
+        {/* Password */}
         <input
           type="password"
           placeholder="Password"
           onChange={(e) => setPassword(e.target.value)}
-          className="w-full mb-2 p-2 border border-white/30 bg-transparent rounded text-white placeholder-gray-300"
+          className="w-full mb-3 p-3 border border-white/30 bg-transparent rounded-lg text-white placeholder-gray-300 outline-none focus:border-orange-400"
         />
 
-        {error && <p className="text-red-400 text-sm mb-2">{error}</p>}
+        {/* Error */}
+        {error && (
+          <p className="text-red-400 text-sm mb-3 text-center">
+            {error}
+          </p>
+        )}
 
+        {/* Register Button */}
         <button
           onClick={handleRegister}
-          className="w-full bg-orange-500 p-2 rounded hover:bg-orange-600"
+          className="w-full bg-orange-500 py-3 rounded-lg hover:bg-orange-600 transition font-semibold"
         >
           Register
         </button>
 
-        <p className="mt-3 text-sm text-center">
+        {/* Login Link */}
+        <p className="mt-4 text-sm text-center text-gray-300">
           Already have an account?{" "}
-          <Link href="/login" className="text-blue-400">
+          <Link href="/login" className="text-orange-400 hover:underline">
             Login
           </Link>
         </p>
 
+        {/* Divider */}
+        <div className="my-4 text-center text-gray-400 text-sm">
+          OR
+        </div>
+
+        {/* Google Button */}
         <button
           onClick={handleGoogleRegister}
-          className="mt-3 w-full border border-white/30 p-2 rounded hover:bg-white/10"
+          className="w-full border border-white/30 py-3 rounded-lg hover:bg-white/10 transition"
         >
           Continue with Google
         </button>
+
       </div>
     </div>
   );
