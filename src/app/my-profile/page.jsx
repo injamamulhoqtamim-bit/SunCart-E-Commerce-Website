@@ -29,7 +29,7 @@ export default function Profile() {
       <h2 className="text-xl font-bold">{user.name}</h2>
       <p>{user.email}</p>
 
-      {/* 🔥 UPDATE BUTTON (IMPORTANT) */}
+      {/* BUTTON (IMPORTANT) */}
       <Link href="/my-profile/update">
         <button className="mt-4 bg-orange-500 px-4 py-2 rounded text-white hover:bg-orange-600">
           Update Profile

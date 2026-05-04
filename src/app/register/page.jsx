@@ -23,7 +23,7 @@ export default function Register() {
       return;
     }
 
-    // ✅ FIX: photo validation + fallback
+    //  photo validation + fallback
     const userData = {
       name,
       email,
