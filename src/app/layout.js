@@ -6,12 +6,12 @@ import "animate.css";
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="bg-black">
+      <body className="bg-black text-white">
         
         {/* Navbar */}
         <Navbar />
 
-        {/* 🔥 IMPORTANT: padding top (navbar height fix) */}
+        {/* Main Content */}
         <main className="pt-16 min-h-screen">
           {children}
         </main>
