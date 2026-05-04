@@ -27,8 +27,14 @@ export default function Navbar() {
   };
 
   return (
-    <div className="bg-blue-400 p-4 text-white flex justify-between items-center">
-      <h1 className="font-bold text-lg">SunCart</h1>
+    <div className="fixed top-0 left-0 w-full z-50 bg-blue-400 p-4 text-white flex justify-between items-center shadow-md">
+      
+      {/* 🔥 Logo → Home */}
+      <Link href="/">
+        <h1 className="font-bold text-lg cursor-pointer">
+          SunCart
+        </h1>
+      </Link>
 
       <div className="flex items-center space-x-4">
         <Link href="/">Home</Link>
@@ -37,19 +43,17 @@ export default function Navbar() {
 
         {user ? (
           <>
-            {/* Name (optional but good) */}
             <span className="hidden md:block">{user.name}</span>
 
-            {/* Avatar */}
             <img
-  src={user.photo || "https://i.ibb.co/4pDNDk1/avatar.png"}
-  onError={(e) => {
-    e.target.src = "https://i.ibb.co/4pDNDk1/avatar.png";
-  }}
-  className="w-8 h-8 rounded-full border"
-/>
+              src={user.photo || "https://i.ibb.co/4pDNDk1/avatar.png"}
+              onError={(e) => {
+                e.target.src =
+                  "https://i.ibb.co/4pDNDk1/avatar.png";
+              }}
+              className="w-8 h-8 rounded-full border"
+            />
 
-            {/* Logout */}
             <button
               onClick={handleLogout}
               className="bg-black px-3 py-1 rounded"
