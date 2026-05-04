@@ -27,8 +27,6 @@ export default function Login() {
     }
 
     if (savedUser.email === email && savedUser.password === password) {
-      
-      // ✅ FIX: clean user object with fallback image
       const userData = {
         name: savedUser.name,
         email: savedUser.email,
@@ -39,9 +37,7 @@ export default function Login() {
       };
 
       localStorage.setItem("user", JSON.stringify(userData));
-
       window.dispatchEvent(new Event("authChange"));
-
       router.push(redirect);
     } else {
       setError("Invalid Email or Password ❌");
@@ -64,9 +60,7 @@ export default function Login() {
       };
 
       localStorage.setItem("user", JSON.stringify(userData));
-
       window.dispatchEvent(new Event("authChange"));
-
       router.push(redirect);
     } catch (err) {
       console.error(err);
@@ -75,49 +69,66 @@ export default function Login() {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen bg-black">
-      <div className="p-6 rounded-xl w-80 shadow-xl bg-white/10 backdrop-blur-md border border-white/20 text-white">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-gray-900 via-black to-gray-900 px-4">
 
-        <h2 className="text-2xl font-bold mb-4 text-center">
+      <div className="w-full max-w-md p-6 sm:p-8 rounded-2xl shadow-2xl bg-white/10 backdrop-blur-md border border-white/20 text-white">
+
+        <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-center">
           Login
         </h2>
 
+        {/* Email */}
         <input
           type="email"
           placeholder="Email"
           onChange={(e) => setEmail(e.target.value)}
-          className="w-full mb-2 p-2 border border-white/30 bg-transparent rounded text-white placeholder-gray-300 outline-none"
+          className="w-full mb-3 p-3 border border-white/30 bg-transparent rounded-lg text-white placeholder-gray-300 outline-none focus:border-orange-400"
         />
 
+        {/* Password */}
         <input
           type="password"
           placeholder="Password"
           onChange={(e) => setPassword(e.target.value)}
-          className="w-full mb-2 p-2 border border-white/30 bg-transparent rounded text-white placeholder-gray-300 outline-none"
+          className="w-full mb-3 p-3 border border-white/30 bg-transparent rounded-lg text-white placeholder-gray-300 outline-none focus:border-orange-400"
         />
 
-        {error && <p className="text-red-400 text-sm mb-2">{error}</p>}
+        {/* Error */}
+        {error && (
+          <p className="text-red-400 text-sm mb-3 text-center">
+            {error}
+          </p>
+        )}
 
+        {/* Login Button */}
         <button
           onClick={handleLogin}
-          className="w-full bg-orange-500 p-2 rounded hover:bg-orange-600"
+          className="w-full bg-orange-500 py-3 rounded-lg hover:bg-orange-600 transition font-semibold"
         >
           Login
         </button>
 
-        <p className="mt-3 text-sm text-center">
+        {/* Register */}
+        <p className="mt-4 text-sm text-center text-gray-300">
           Don’t have an account?{" "}
-          <Link href="/register" className="text-blue-400">
+          <Link href="/register" className="text-orange-400 hover:underline">
             Register
           </Link>
         </p>
 
+        {/* Divider */}
+        <div className="my-4 text-center text-gray-400 text-sm">
+          OR
+        </div>
+
+        {/* Google */}
         <button
           onClick={handleGoogleLogin}
-          className="mt-3 w-full border border-white/30 p-2 rounded hover:bg-white/10"
+          className="w-full border border-white/30 py-3 rounded-lg hover:bg-white/10 transition"
         >
           Continue with Google
         </button>
+
       </div>
     </div>
   );

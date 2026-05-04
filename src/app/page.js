@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <div className="px-4 md:px-10 py-6 bg-gray-100 min-h-screen text-gray-900">
 
-      {/* 🌅 Hero Section */}
+      {/*  Hero Section */}
       <div className="bg-gradient-to-r from-blue-500 to-red-500 text-white p-8 md:p-12 text-center rounded-2xl mb-10 shadow-xl">
         <h1 className="text-2xl md:text-4xl font-bold mb-2">
           Summer Sale 50% OFF ☀️
@@ -15,18 +15,18 @@ export default function Home() {
         </p>
       </div>
 
-      {/* 🔥 Popular Products */}
+      {/*  Popular Products */}
       <h2 className="text-xl md:text-2xl font-bold mb-4">
         🔥 Popular Products
       </h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        {products.slice(0, 3).map((product) => (
+        {products.slice(0, 6).map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
       </div>
 
-      {/* ➕ Summer Care Tips */}
+      {/* Summer Care Tips */}
       <div className="mt-12">
         <h2 className="text-xl md:text-2xl font-bold mb-4">
           🌿 Summer Care Tips
@@ -45,7 +45,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* ➕ Top Brands */}
+      {/*  Top Brands */}
       <div className="mt-12">
         <h2 className="text-xl md:text-2xl font-bold mb-4">
           🏆 Top Brands
