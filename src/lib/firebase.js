@@ -1,20 +1,22 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
 
-// 🔥 তোমার config (already correct)
+//  config 
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyAp6RHPYt0W-lB1nliaMMiitFD14i54Kok",
-  authDomain: "suncart-1be25.firebaseapp.com",
-  projectId: "suncart-1be25",
-  storageBucket: "suncart-1be25.firebasestorage.app",
-  messagingSenderId: "580355995075",
-  appId: "1:580355995075:web:9e34085f730536746fb976",
-  measurementId: "G-SQN22DQ9JG",
+  apiKey: "AIzaSyDszKx7meAMZJjGUS1ysazbKMVanMO_plA",
+  authDomain: "suncart-new.firebaseapp.com",
+  projectId: "suncart-new",
+  storageBucket: "suncart-new.firebasestorage.app",
+  messagingSenderId: "1032315924453",
+  appId: "1:1032315924453:web:a3d35d03f25d8d162d090c",
+  measurementId: "G-R8ZVFDHR8H"
 };
 
-// ✅ initialize
+// initialize
 const app = initializeApp(firebaseConfig);
 
-// ✅ export (VERY IMPORTANT)
+//  export (VERY IMPORTANT)
 export const auth = getAuth(app);
 export const provider = new GoogleAuthProvider();
+
