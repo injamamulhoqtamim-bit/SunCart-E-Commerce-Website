@@ -81,28 +81,31 @@ export default function LoginContent() {
           </p>
         )}
 
-       <button
+       {/* Login Button */}
+<button
+  onClick={handleLogin}
+  className="w-full bg-orange-500 py-3 rounded-lg hover:bg-orange-600 transition"
+>
+  Login
+</button>
+
+<p className="mt-4 text-sm text-center">
+  Don’t have an account?{" "}
+  <Link href="/register" className="text-orange-400">
+    Register
+  </Link>
+</p>
+
+<div className="my-4 text-center text-gray-400 text-sm">
+  OR
+</div>
+
+{/* Google Login */}
+<button
   onClick={handleGoogleLogin}
   className="w-full border border-white/20 py-3 rounded-lg hover:bg-white hover:text-black transition"
 >
   Continue with Google
-</button>
-
-        <p className="mt-4 text-sm text-center">
-          Don’t have an account?{" "}
-          <Link href="/register" className="text-orange-400">
-            Register
-          </Link>
-        </p>
-
-        <div className="my-4 text-center text-gray-400 text-sm">
-          OR
-        </div>
-
-        <button
-  className="w-full border border-white/20 py-3 rounded-lg opacity-50 cursor-not-allowed"
->
-  Google Login Coming Soon
 </button>
 
       </div>
