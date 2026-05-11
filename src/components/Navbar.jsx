@@ -1,38 +1,36 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
+import { useSession, signOut } from "@/lib/auth-client";
 
 export default function Navbar() {
-  const [user, setUser] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
 
-  useEffect(() => {
-    const checkUser = () => {
-      const loggedUser = localStorage.getItem("user");
-      setUser(loggedUser ? JSON.parse(loggedUser) : null);
-    };
+  const { data: session } = useSession();
 
-    checkUser();
+  const user = session?.user;
 
-    window.addEventListener("authChange", checkUser);
+  // image detect
+  const profileImage =
+    user?.image ||
+    user?.picture ||
+    user?.avatar ||
+    user?.photoURL ||
+    `https://ui-avatars.com/api/?name=${encodeURIComponent(
+      user?.name || "User"
+    )}`;
 
-    return () => {
-      window.removeEventListener("authChange", checkUser);
-    };
-  }, []);
-
-  const handleLogout = () => {
-    localStorage.removeItem("user");
-    window.dispatchEvent(new Event("authChange"));
-    setMenuOpen(false); // mobile menu close
+  const handleLogout = async () => {
+    await signOut();
+    setMenuOpen(false);
   };
 
   return (
     <div className="fixed top-0 left-0 w-full z-50 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 p-4 text-white shadow-lg">
-      
+
       <div className="flex justify-between items-center">
-        
+
         {/* Logo */}
         <Link href="/">
           <h1 className="font-bold text-xl cursor-pointer hover:text-orange-400 transition">
@@ -42,21 +40,36 @@ export default function Navbar() {
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center space-x-5">
-          <Link href="/" className="hover:text-orange-400">Home</Link>
-          <Link href="/product" className="hover:text-orange-400">Products</Link>
-          <Link href="/my-profile" className="hover:text-orange-400">My Profile</Link>
+
+          <Link href="/" className="hover:text-orange-400">
+            Home
+          </Link>
+
+          <Link href="/product" className="hover:text-orange-400">
+            Products
+          </Link>
+
+          <Link href="/my-profile" className="hover:text-orange-400">
+            My Profile
+          </Link>
 
           {user ? (
             <>
-              <span className="text-gray-300">{user.name}</span>
+              <span className="text-gray-300">
+                {user?.name}
+              </span>
 
               <img
-                src={user?.photo || "https://i.ibb.co/4pDNDk1/avatar.png"}
+                src={profileImage}
+                alt="Profile"
+                referrerPolicy="no-referrer"
                 onError={(e) => {
                   e.currentTarget.src =
-                    "https://i.ibb.co/4pDNDk1/avatar.png";
+                    `https://ui-avatars.com/api/?name=${encodeURIComponent(
+                      user?.name || "User"
+                    )}`;
                 }}
-                className="w-9 h-9 rounded-full border-2 border-orange-400"
+                className="w-10 h-10 rounded-full border-2 border-orange-400 object-cover"
               />
 
               <button
@@ -69,14 +82,18 @@ export default function Navbar() {
           ) : (
             <>
               <Link href="/login">Login</Link>
-              <Link href="/register" className="bg-orange-500 px-3 py-1 rounded">
+
+              <Link
+                href="/register"
+                className="bg-orange-500 px-3 py-1 rounded"
+              >
                 Register
               </Link>
             </>
           )}
         </div>
 
-        {/* Mobile Menu Button */}
+        {/* Mobile Button */}
         <button
           className="md:hidden text-2xl"
           onClick={() => setMenuOpen(!menuOpen)}
@@ -85,21 +102,37 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile Dropdown */}
+      {/* Mobile Menu */}
       {menuOpen && (
         <div className="mt-4 flex flex-col space-y-3 md:hidden bg-gray-900 p-4 rounded-lg">
-          
-          <Link href="/" onClick={() => setMenuOpen(false)}>Home</Link>
-          <Link href="/product" onClick={() => setMenuOpen(false)}>Products</Link>
-          <Link href="/my-profile" onClick={() => setMenuOpen(false)}>My Profile</Link>
+
+          <Link href="/" onClick={() => setMenuOpen(false)}>
+            Home
+          </Link>
+
+          <Link href="/product" onClick={() => setMenuOpen(false)}>
+            Products
+          </Link>
+
+          <Link href="/my-profile" onClick={() => setMenuOpen(false)}>
+            My Profile
+          </Link>
 
           {user ? (
             <>
-              <span>{user.name}</span>
+              <span>{user?.name}</span>
 
               <img
-                src={user?.photo || "https://i.ibb.co/4pDNDk1/avatar.png"}
-                className="w-10 h-10 rounded-full border"
+                src={profileImage}
+                alt="Profile"
+                referrerPolicy="no-referrer"
+                onError={(e) => {
+                  e.currentTarget.src =
+                    `https://ui-avatars.com/api/?name=${encodeURIComponent(
+                      user?.name || "User"
+                    )}`;
+                }}
+                className="w-10 h-10 rounded-full border-2 border-orange-400 object-cover"
               />
 
               <button
@@ -111,7 +144,10 @@ export default function Navbar() {
             </>
           ) : (
             <>
-              <Link href="/login" onClick={() => setMenuOpen(false)}>
+              <Link
+                href="/login"
+                onClick={() => setMenuOpen(false)}
+              >
                 Login
               </Link>
 

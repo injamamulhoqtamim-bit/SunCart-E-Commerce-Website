@@ -2,27 +2,30 @@
 
 import { useEffect, useState } from "react";
 import { useRouter, useParams } from "next/navigation";
+import { useSession } from "@/lib/auth-client";
 import products from "@/data/products.json";
 
 export default function ProductDetails() {
   const router = useRouter();
   const params = useParams();
 
+  const { data: session, isPending } = useSession();
+
   const [authorized, setAuthorized] = useState(false);
 
-  //  Auth check
+  // Auth Check
   useEffect(() => {
-    const user = localStorage.getItem("user");
+    if (isPending) return;
 
-    if (!user) {
+    if (!session?.user) {
       router.push(`/login?redirect=/product/${params.id}`);
     } else {
       setAuthorized(true);
     }
-  }, [params.id, router]);
+  }, [session, isPending, params.id, router]);
 
-  //  Loading
-  if (!authorized) {
+  // Loading
+  if (isPending || !authorized) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <p className="text-gray-500 text-lg">
@@ -32,7 +35,7 @@ export default function ProductDetails() {
     );
   }
 
-  // Find product
+  // Find Product
   const product = products.find(
     (p) => p.id === Number(params.id)
   );
@@ -42,7 +45,7 @@ export default function ProductDetails() {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-100">
         <h1 className="text-2xl font-semibold text-red-500">
-          404  Product Not Found
+          404 Product Not Found
         </h1>
       </div>
     );
@@ -50,13 +53,13 @@ export default function ProductDetails() {
 
   return (
     <div className="min-h-screen bg-gray-100 py-8 px-4">
-      
+
       <div className="max-w-6xl mx-auto bg-white rounded-2xl shadow-lg p-5 md:p-10">
-        
+
         {/* Responsive Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-          
-          {/* Image Section */}
+
+          {/* Image */}
           <div className="w-full">
             <img
               src={product.image}
@@ -69,9 +72,9 @@ export default function ProductDetails() {
             />
           </div>
 
-          {/* Details Section */}
+          {/* Details */}
           <div className="flex flex-col justify-between h-full">
-            
+
             <div>
               <h1 className="text-2xl sm:text-3xl font-bold mb-2">
                 {product.name}
@@ -102,9 +105,9 @@ export default function ProductDetails() {
               </p>
             </div>
 
-            {/* Action Buttons */}
+            {/* Buttons */}
             <div className="mt-6 flex flex-col sm:flex-row gap-3">
-              
+
               <button className="w-full bg-orange-500 text-white py-2 rounded-lg hover:bg-orange-600 transition">
                 🛒 Add to Cart
               </button>

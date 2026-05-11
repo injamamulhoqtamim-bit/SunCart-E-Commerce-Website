@@ -1,92 +1,50 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useSession } from "@/lib/auth-client";
 
 export default function UpdateProfile() {
-  const router = useRouter();
+  const { data: session } = useSession();
 
-  const [name, setName] = useState("");
-  const [photo, setPhoto] = useState("");
-  const [error, setError] = useState("");
+  const user = session?.user;
 
-  //  load current user
-  useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("user"));
-    if (!user) {
-      router.push("/login");
-    } else {
-      setName(user.name || "");
-      setPhoto(user.photo || "");
-    }
-  }, [router]);
-
-  const handleUpdate = () => {
-    setError("");
-
-    const user = JSON.parse(localStorage.getItem("user"));
-
-    if (!user) {
-      setError("User not found ");
-      return;
-    }
-
-    const updatedUser = {
-      ...user,
-      name: name || user.name,
-      photo:
-        photo && photo.startsWith("http")
-          ? photo
-          : user.photo || "https://i.ibb.co/4pDNDk1/avatar.png",
-    };
-
-    localStorage.setItem("user", JSON.stringify(updatedUser));
-
-    alert("Profile Updated ");
-    router.push("/my-profile");
-  };
+  const profileImage =
+    user?.image ||
+    user?.picture ||
+    user?.avatar ||
+    user?.photoURL ||
+    `https://ui-avatars.com/api/?name=${encodeURIComponent(
+      user?.name || "User"
+    )}`;
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4 py-10">
-      
-      <div className="w-full max-w-md bg-white rounded-2xl shadow-lg p-6 sm:p-8">
-        
-        <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">
-          Update Profile
+
+      <div className="w-full max-w-md bg-white rounded-2xl shadow-lg p-6 sm:p-8 text-center">
+
+        <img
+          src={profileImage}
+          alt="Profile"
+          referrerPolicy="no-referrer"
+          onError={(e) => {
+            e.currentTarget.src =
+              `https://ui-avatars.com/api/?name=${encodeURIComponent(
+                user?.name || "User"
+              )}`;
+          }}
+          className="w-28 h-28 mx-auto rounded-full mb-4 border-4 border-orange-400 object-cover"
+        />
+
+        <h2 className="text-2xl font-bold">
+          {user?.name}
         </h2>
 
-        {/* Name */}
-        <input
-          type="text"
-          placeholder="New Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          className="w-full mb-3 p-3 border border-gray-300 rounded-lg outline-none focus:border-orange-400"
-        />
+        <p className="text-gray-500 mt-2">
+          {user?.email}
+        </p>
 
-        {/* Photo */}
-        <input
-          type="text"
-          placeholder="Photo URL"
-          value={photo}
-          onChange={(e) => setPhoto(e.target.value)}
-          className="w-full mb-3 p-3 border border-gray-300 rounded-lg outline-none focus:border-orange-400"
-        />
-
-        {/* Error */}
-        {error && (
-          <p className="text-red-500 text-sm mb-3 text-center">
-            {error}
-          </p>
-        )}
-
-        {/* Update Button */}
-        <button
-          onClick={handleUpdate}
-          className="w-full bg-orange-500 text-white py-3 rounded-lg hover:bg-orange-600 transition"
-        >
-          Update Information
-        </button>
+        <p className="mt-5 text-sm text-orange-500">
+          Better Auth Google users update automatically from Google account.
+        </p>
 
       </div>
     </div>

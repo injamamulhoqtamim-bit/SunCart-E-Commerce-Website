@@ -3,8 +3,8 @@
 import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
-import { signInWithPopup } from "firebase/auth";
-import { auth, provider } from "@/lib/firebase";
+import { signIn } from "@/lib/auth-client";
+
 
 export default function LoginContent() {
   const router = useRouter();
@@ -45,28 +45,13 @@ export default function LoginContent() {
   };
 
   const handleGoogleLogin = async () => {
-    try {
-      const result = await signInWithPopup(auth, provider);
-      const firebaseUser = result.user;
+  await signIn.social({
+    provider: "google",
+    callbackURL: "/",
+  });
+};
 
-      const userData = {
-        name: firebaseUser.displayName || "No Name",
-        email: firebaseUser.email,
-        photo:
-          firebaseUser.photoURL &&
-          firebaseUser.photoURL.startsWith("http")
-            ? firebaseUser.photoURL
-            : "https://i.ibb.co/4pDNDk1/avatar.png",
-      };
-
-      localStorage.setItem("user", JSON.stringify(userData));
-      window.dispatchEvent(new Event("authChange"));
-      router.push(redirect);
-    } catch (err) {
-      console.error(err);
-      setError("Google Login Failed ❌");
-    }
-  };
+  
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-gray-900 via-black to-gray-900 px-4">
@@ -96,12 +81,12 @@ export default function LoginContent() {
           </p>
         )}
 
-        <button
-          onClick={handleLogin}
-          className="w-full bg-orange-500 py-3 rounded-lg"
-        >
-          Login
-        </button>
+       <button
+  onClick={handleGoogleLogin}
+  className="w-full border border-white/20 py-3 rounded-lg hover:bg-white hover:text-black transition"
+>
+  Continue with Google
+</button>
 
         <p className="mt-4 text-sm text-center">
           Don’t have an account?{" "}
@@ -115,11 +100,10 @@ export default function LoginContent() {
         </div>
 
         <button
-          onClick={handleGoogleLogin}
-          className="w-full border py-3 rounded-lg"
-        >
-          Continue with Google
-        </button>
+  className="w-full border border-white/20 py-3 rounded-lg opacity-50 cursor-not-allowed"
+>
+  Google Login Coming Soon
+</button>
 
       </div>
     </div>

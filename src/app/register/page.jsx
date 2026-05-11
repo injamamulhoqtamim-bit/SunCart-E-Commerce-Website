@@ -3,8 +3,8 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { signInWithPopup } from "firebase/auth";
-import { auth, provider } from "@/lib/firebase";
+import { signIn } from "@/lib/auth-client";
+
 
 export default function Register() {
   const router = useRouter();
@@ -38,29 +38,13 @@ export default function Register() {
   };
 
   const handleGoogleRegister = async () => {
-    try {
-      const result = await signInWithPopup(auth, provider);
-      const firebaseUser = result.user;
+  await signIn.social({
+    provider: "google",
+    callbackURL: "/",
+  });
+};
 
-      const userData = {
-        name: firebaseUser.displayName || "No Name",
-        email: firebaseUser.email,
-        photo:
-          firebaseUser.photoURL &&
-          firebaseUser.photoURL.startsWith("http")
-            ? firebaseUser.photoURL
-            : "https://i.ibb.co/4pDNDk1/avatar.png",
-      };
-
-      localStorage.setItem("user", JSON.stringify(userData));
-      window.dispatchEvent(new Event("authChange"));
-
-      router.push("/");
-    } catch (error) {
-      console.error(error);
-      setError("Google Register Failed ❌");
-    }
-  };
+  
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-gray-900 via-black to-gray-900 px-4">
@@ -129,12 +113,12 @@ export default function Register() {
         </div>
 
         {/* Google Button */}
-        <button
-          onClick={handleGoogleRegister}
-          className="w-full border border-white/30 py-3 rounded-lg hover:bg-white/10 transition"
-        >
-          Continue with Google
-        </button>
+       <button
+  onClick={handleGoogleRegister}
+  className="w-full border py-3 rounded-lg hover:bg-white hover:text-black transition"
+>
+  Continue with Google
+</button>
 
       </div>
     </div>
