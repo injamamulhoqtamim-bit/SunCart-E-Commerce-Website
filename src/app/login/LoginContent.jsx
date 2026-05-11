@@ -59,11 +59,11 @@ export default function LoginContent() {
   };
 
   const handleGoogleLogin = async () => {
-    await signIn.social({
-      provider: "google",
-      callbackURL: "/",
-    });
-  };
+  await signIn.social({
+    provider: "google",
+    callbackURL: "/",
+  });
+};
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-gray-900 via-black to-gray-900 px-4">
