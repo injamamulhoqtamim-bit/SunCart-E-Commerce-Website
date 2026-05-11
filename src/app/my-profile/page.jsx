@@ -1,12 +1,37 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { useSession } from "@/lib/auth-client";
 
 export default function Profile() {
   const { data: session } = useSession();
 
-  const user = session?.user;
+  const [localUser, setLocalUser] = useState(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+
+    const storedUser = localStorage.getItem("user");
+
+    if (storedUser) {
+      setLocalUser(JSON.parse(storedUser));
+    }
+  }, []);
+
+  if (!mounted) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-100">
+        <p className="text-gray-500 text-lg">
+          Loading...
+        </p>
+      </div>
+    );
+  }
+
+  // Better Auth user OR localStorage user
+  const user = session?.user || localUser;
 
   if (!user) {
     return (
@@ -23,6 +48,7 @@ export default function Profile() {
     user?.picture ||
     user?.avatar ||
     user?.photoURL ||
+    user?.photo ||
     `https://ui-avatars.com/api/?name=${encodeURIComponent(
       user?.name || "User"
     )}`;
